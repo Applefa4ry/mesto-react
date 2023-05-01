@@ -9,15 +9,18 @@ function Main(props){
   const [userAvatar, setUserAvatar] = React.useState("")
   const [cards, setCards] = React.useState([])
 
-  api.getUserInfoFromServer()
+  React.useEffect(() => {
+    api.getUserInfoFromServer()
     .then(res => {
       setUserName(res.name)
       setUserDescription(res.about)
       setUserAvatar(res.avatar)
     })
   
-  api.getInitialCards()
-    .then(res => setCards(res)) 
+    api.getInitialCards()
+      .then(res => setCards(res)) 
+  }, [])
+
 
   return(
     <main className="content">

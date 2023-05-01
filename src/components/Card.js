@@ -4,7 +4,7 @@ function Card(props){
   } 
 
   return(
-    <figure className="card" key={props.key}>
+    <figure className="card">
     <img onClick={handleClick} className="card__image" src={props.card.link} alt={props.card.name}/>
     <figcaption className="card__about">
       <h2 className="card__title">{props.card.name}</h2>
