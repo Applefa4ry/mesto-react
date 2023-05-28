@@ -1,6 +1,4 @@
 import React from 'react'
-import avatarPath from '../images/avatar.jpg'
-import api from '../utils/api'
 import Card from './Card'
 import {CurrentUserContext} from '../context/CurrentUserContext';
 

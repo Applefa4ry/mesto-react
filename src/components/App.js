@@ -68,11 +68,13 @@ function App() {
       .then(newCard => {
         setCards(state => state.map(c => c._id === card._id ? newCard : c))
       })
+      .catch(err => console.log(`Ошибка ${err}`))
     :
     api.deleteLike(card._id)
     .then(newCard => {
       setCards(state => state.map(c => c._id === card._id ? newCard : c))
     })
+    .catch(err => console.log(`Ошибка ${err}`))
   }
 
   function handleCardDelete(card, setCards){
@@ -83,28 +85,34 @@ function App() {
       .catch(err => console.log(`Ошибка ${err}`))
   }
 
-  function handleUpdateUser(data){
+  function handleUpdateUser(data,e){
     api.setUserInfoOnServer(data)
       .then(data => {
         setCurrentUser(data);
+        e.target.lastChild.textContent = "Сохранить"
+        e.target.reset();
         closeAllPopups();
       })
       .catch(err => console.log(`Ошибка ${err}`))
   }
 
-  function handleUpdateAvatar(data){
+  function handleUpdateAvatar(data,e){
     api.setUserAvatarOnServer(data)
       .then(data => {
         setCurrentUser(data);
+        e.target.lastChild.textContent = "Сохранить";
+        e.target.reset();
         closeAllPopups();
       })
       .catch(err => console.log(`Ошибка ${err}`))
   }
 
-  function handleAddNewCard(newCard){
+  function handleAddNewCard(newCard,e){
     api.addNewCard(newCard)
       .then(newCard => {
         setCards([newCard, ...cards]);
+        e.target.lastChild.textContent = "Создать"
+        e.target.reset();
         closeAllPopups();
       })
       .catch(err => console.log(`Ошибка ${err}`))
